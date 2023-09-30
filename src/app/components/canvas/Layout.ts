@@ -1,4 +1,4 @@
-import { ISizes } from "../interfaces/Sizes.interface";
+import { ISizes } from "../../../interfaces/Sizes.interface";
 
 export default class Layout {
   screen: ISizes = {

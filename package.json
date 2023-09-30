@@ -2,14 +2,16 @@
   "name": "three-ts-starter",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "module": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "clean": "rm -rf _site",
+    "dev": "pnpm run clean && eleventy --config=.eleventy.cjs --serve --incremental",
+    "build": "pnpm run clean && eleventy --config=.eleventy.cjs",
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-vite": "^4.0.0",
     "@types/three": "^0.154.0",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
@@ -22,10 +24,9 @@
     "sass": "^1.64.1",
     "typescript": "^5.1.6",
     "vite": "^4.4.5",
-    "vite-plugin-glsl": "^1.1.2"
+    "vite-plugin-glslify": "^2.0.2"
   },
   "dependencies": {
-    "gsap": "^3.12.2",
     "three": "^0.154.0"
   }
 }
