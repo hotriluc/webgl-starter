@@ -8,6 +8,9 @@ import {
   Mesh,
 } from "ogl";
 
+import vertexShader from "@shaders/sketch/vertex.glsl";
+import fragmentShader from "@shaders/sketch/fragment.glsl";
+
 export default class Scene {
   renderer: Renderer;
   gl: OGLRenderingContext;
@@ -43,27 +46,12 @@ export default class Scene {
   addObjects() {
     const geometry = new Box(this.gl);
     const program = new Program(this.gl, {
-      vertex: /* glsl */ `
-            attribute vec3 position;
-
-            uniform mat4 modelViewMatrix;
-            uniform mat4 projectionMatrix;
-
-            void main() {
-                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-            }
-        `,
-      fragment: /* glsl */ `
-            void main() {
-                gl_FragColor = vec4(1.0, 0.2, 0.5, 1.0);
-            }
-        `,
+      vertex: vertexShader,
+      fragment: fragmentShader,
     });
 
     const mesh = new Mesh(this.gl, { geometry, program });
     mesh.setParent(this.scene);
-
-    console.log("aa");
   }
 
   // Main tick from where we invoke other components to update
