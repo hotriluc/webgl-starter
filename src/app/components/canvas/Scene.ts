@@ -1,64 +1,90 @@
-import * as THREE from "three";
+import {
+  Renderer,
+  Camera,
+  Transform,
+  OGLRenderingContext,
+  Box,
+  Program,
+  Mesh,
+} from "ogl";
 
-export default class {
-  renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector(".canvas")!,
-    alpha: true,
-  });
-  camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera();
-  scene: THREE.Scene = new THREE.Scene();
-
-  geometry: THREE.BoxGeometry | null = null;
-  mesh: THREE.Mesh | null = null;
-  material: THREE.MeshBasicMaterial | null = null;
-  time = 0;
+export default class Scene {
+  renderer: Renderer;
+  gl: OGLRenderingContext;
+  camera: Camera;
+  scene: Transform;
 
   constructor() {
-    this.init();
-  }
+    // Setup Renderer and GL Context
+    this.renderer = new Renderer({
+      canvas: document.querySelector<HTMLCanvasElement>(".canvas")!,
+      dpr: Math.min(window.devicePixelRatio, 2),
+      alpha: true,
+    });
+    this.gl = this.renderer.gl;
 
-  init() {
-    this.setupRenderer();
-    this.setupCamera();
-    this.onResize();
+    // Setup the camera
+    this.camera = new Camera(this.gl);
+    this.camera.fov = 45;
+    this.camera.position.z = 5;
 
+    // Setup the scene
+    this.scene = new Transform();
+
+    // Add objects to the scene
     this.addObjects();
 
+    // Events
+    this.onResize();
     this.update();
     this.bindEvents();
   }
 
   addObjects() {
-    this.geometry = new THREE.BoxGeometry(1, 1, 1);
+    const geometry = new Box(this.gl);
+    const program = new Program(this.gl, {
+      vertex: /* glsl */ `
+            attribute vec3 position;
 
-    this.material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    this.mesh = new THREE.Mesh(this.geometry, this.material);
-    this.scene.add(this.mesh);
+            uniform mat4 modelViewMatrix;
+            uniform mat4 projectionMatrix;
+
+            void main() {
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `,
+      fragment: /* glsl */ `
+            void main() {
+                gl_FragColor = vec4(1.0, 0.2, 0.5, 1.0);
+            }
+        `,
+    });
+
+    const mesh = new Mesh(this.gl, { geometry, program });
+    mesh.setParent(this.scene);
+
+    console.log("aa");
   }
 
-  setupRenderer() {
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    this.renderer.setAnimationLoop(() => {
-      this.update();
+  // Main tick from where we invoke other components to update
+  update() {
+    window.requestAnimationFrame(this.update.bind(this));
+
+    this.renderer.render({
+      scene: this.scene,
+      camera: this.camera,
     });
   }
 
-  setupCamera() {
-    this.camera.fov = 45;
-    this.camera.position.z = 5;
-  }
-
-  /**
-   * Handlers
-   */
-  onWheel() {}
-
+  // Event Handlers
   onResize() {
     const { screen } = window.APP.Layout;
 
+    // Recalculate viewport sizes
     this.renderer.setSize(screen.width, screen.height);
-    this.camera.aspect = screen.width / screen.height;
-    this.camera.updateProjectionMatrix();
+    this.camera.perspective({
+      aspect: this.gl.canvas.width / this.gl.canvas.height,
+    });
 
     const fov = this.camera.fov * (Math.PI / 180);
     const height = 2 * Math.tan(fov / 2) * this.camera.position.z;
@@ -67,18 +93,7 @@ export default class {
     window.APP.Layout.setViewport(width, height);
   }
 
-  update() {
-    this.renderer.render(this.scene, this.camera);
-    this.time += 0.05;
-
-    // if (this.mesh) {
-    //   this.mesh.rotation.y = this.time;
-    // }
-  }
-
-  /**
-   * Add Event Listeners
-   */
+  // Events binding
   bindEvents() {
     window.addEventListener("resize", this.onResize.bind(this));
   }

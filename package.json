@@ -13,6 +13,7 @@
     "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-plugin-vite": "^4.0.0",
     "@types/html-minifier": "^4.0.3",
+    "@types/ogl": "npm:ogl-types@^0.0.102",
     "@types/three": "^0.154.0",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
@@ -30,6 +31,7 @@
     "vite-plugin-glslify": "^2.0.2"
   },
   "dependencies": {
+    "ogl": "^1.0.0",
     "three": "^0.154.0"
   }
 }
