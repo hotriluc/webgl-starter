@@ -49,6 +49,9 @@ devDependencies:
   prettier:
     specifier: ^3.0.3
     version: 3.0.3
+  pug:
+    specifier: ^3.0.2
+    version: 3.0.2
   sass:
     specifier: ^1.68.0
     version: 1.68.0

@@ -55,7 +55,10 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: "src/views",
       output: "_site",
+      includes: "_includes",
+      data: "_data",
     },
     passthroughFileCopy: true,
+    htmlTemplateEngine: "pug",
   };
 };
