@@ -1,5 +1,7 @@
-import Layout from "./components/canvas/Layout";
-import Scene from "./components/canvas/Scene";
+import "@styles/styles.scss";
+
+import Layout from "@app/classes/Layout";
+import Scene from "@canvas/Scene";
 
 interface IApp {
   Scene: Scene;
