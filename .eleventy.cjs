@@ -1,4 +1,5 @@
 const path = require("path");
+const htmlmin = require("html-minifier");
 const EleventyVitePlugin = require("@11ty/eleventy-plugin-vite");
 const glslifyPlugin = require("vite-plugin-glslify").default;
 
@@ -37,6 +38,18 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/interfaces");
   eleventyConfig.addPassthroughCopy("src/styles");
   eleventyConfig.setServerPassthroughCopyBehavior("copy");
+
+  eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
+    if (outputPath && outputPath.endsWith(".html")) {
+      const minified = htmlmin.minify(content, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true,
+      });
+      return minified;
+    }
+    return content;
+  });
 
   return {
     dir: {
