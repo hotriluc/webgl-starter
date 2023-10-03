@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "clean": "rm -rf _site",
-    "dev": "pnpm run clean && eleventy --config=.eleventy.js --serve --incremental",
-    "build": "pnpm run clean && eleventy --config=.eleventy.js",
+    "dev": "pnpm run clean && eleventy --config=.eleventy.cjs --serve --incremental",
+    "build": "pnpm run clean && eleventy --config=.eleventy.cjs",
     "prepare": "husky install"
   },
   "devDependencies": {
