@@ -2,11 +2,10 @@
   "name": "three-ts-starter",
   "private": true,
   "version": "0.0.0",
-  "module": "module",
   "scripts": {
     "clean": "rm -rf _site",
-    "dev": "pnpm run clean && eleventy --config=.eleventy.cjs --serve --incremental",
-    "build": "pnpm run clean && eleventy --config=.eleventy.cjs",
+    "dev": "pnpm run clean && eleventy --config=.eleventy.js --serve --incremental",
+    "build": "pnpm run clean && eleventy --config=.eleventy.js",
     "prepare": "husky install"
   },
   "devDependencies": {
