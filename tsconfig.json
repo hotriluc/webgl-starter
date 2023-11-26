@@ -23,14 +23,6 @@
     /* Aliases */
     "paths": {
       "@app/*": ["src/app/*"],
-      "@animations/*": ["src/app/animations/*"],
-      "@components/*": ["src/app/components/*"],
-      "@canvas/*": ["src/app/components/canvas/*"],
-      "@shaders/*": ["src/app/shaders/*"],
-      "@utils/*": ["src/app/utils/*"],
-      "@classes/*": ["src/app/classes/*"],
-      "@pages/*": ["src/app/pages/*"],
-
       "@interfaces/*": ["src/interfaces/*"]
     }
   },

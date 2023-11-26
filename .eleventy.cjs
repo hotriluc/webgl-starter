@@ -18,14 +18,6 @@ module.exports = function (eleventyConfig) {
       resolve: {
         alias: {
           "@app": path.resolve(".", "/src/app"),
-          "@animations": path.resolve(".", "/src/app/animations"),
-          "@classes": path.resolve(".", "/src/app/classes"),
-          "@components": path.resolve(".", "/src/app/components"),
-          "@canvas": path.resolve(".", "/src/app/components/canvas"),
-          "@pages": path.resolve(".", "/src/app/pages"),
-          "@shaders": path.resolve(".", "/src/app/shaders"),
-          "@utils": path.resolve(".", "/src/app/utils"),
-
           "@styles": path.resolve(".", "/src/styles"),
           "@interfaces": path.resolve(".", "/src/interfaces"),
         },

@@ -8,8 +8,8 @@ import {
   Mesh,
 } from "ogl";
 
-import vertexShader from "@shaders/sketch/vertex.glsl";
-import fragmentShader from "@shaders/sketch/fragment.glsl";
+import vertexShader from "@app/shaders/sketch/vertex.glsl";
+import fragmentShader from "@app/shaders/sketch/fragment.glsl";
 
 export default class Scene {
   renderer: Renderer;
