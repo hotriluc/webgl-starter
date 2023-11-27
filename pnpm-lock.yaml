@@ -8,9 +8,6 @@ dependencies:
   ogl:
     specifier: ^1.0.3
     version: 1.0.3
-  three:
-    specifier: ^0.158.0
-    version: 0.158.0
 
 devDependencies:
   '@11ty/eleventy':
@@ -19,15 +16,15 @@ devDependencies:
   '@11ty/eleventy-plugin-vite':
     specifier: ^4.0.0
     version: 4.0.0(sass@1.69.5)
+  '@prettier/plugin-pug':
+    specifier: ^3.0.0
+    version: 3.0.0(prettier@3.1.0)
   '@types/html-minifier':
     specifier: ^4.0.5
     version: 4.0.5
   '@types/ogl':
     specifier: npm:ogl-types@^0.0.102
     version: /ogl-types@0.0.102
-  '@types/three':
-    specifier: ^0.158.3
-    version: 0.158.3
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.12.0
     version: 6.12.0(@typescript-eslint/parser@6.12.0)(eslint@8.54.0)(typescript@5.3.2)
@@ -705,6 +702,16 @@ packages:
       tslib: 2.6.2
     dev: true
 
+  /@prettier/plugin-pug@3.0.0(prettier@3.1.0):
+    resolution: {integrity: sha512-ERMMvGSJK/7CTc8OT7W/dtlV43sytyNeiCWckN0DIFepqwXotU0+coKMv5Wx6IWSNj7ZSjdNGBAA1nMPi388xw==}
+    engines: {node: ^16.13.0 || >=18.0.0, npm: '>=7.10.0'}
+    peerDependencies:
+      prettier: ^3.0.0
+    dependencies:
+      prettier: 3.1.0
+      pug-lexer: 5.0.1
+    dev: true
+
   /@rollup/pluginutils@4.2.1:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
     engines: {node: '>= 8.0.0'}
@@ -862,27 +869,10 @@ packages:
     resolution: {integrity: sha512-dn1l8LaMea/IjDoHNd9J52uBbInB796CDffS6VdIxvqYCPSG0V0DzHp76GpaWnlhg88uYyPbXCDIowa86ybd5A==}
     dev: true
 
-  /@types/stats.js@0.17.3:
-    resolution: {integrity: sha512-pXNfAD3KHOdif9EQXZ9deK82HVNaXP5ZIF5RP2QG6OQFNTaY2YIetfrE9t528vEreGQvEPRDDc8muaoYeK0SxQ==}
-    dev: true
-
-  /@types/three@0.158.3:
-    resolution: {integrity: sha512-6Qs1rUvLSbkJ4hlIe6/rdwIf61j1x2UKvGJg7s8KjswYsz1C1qDTs6voVXXB8kYaI0hgklgZgbZUupfL1l9xdA==}
-    dependencies:
-      '@types/stats.js': 0.17.3
-      '@types/webxr': 0.5.10
-      fflate: 0.6.10
-      meshoptimizer: 0.18.1
-    dev: true
-
   /@types/uglify-js@3.17.4:
     resolution: {integrity: sha512-Hm/T0kV3ywpJyMGNbsItdivRhYNCQQf1IIsYsXnoVPES4t+FMLyDe0/K+Ea7ahWtMtSNb22ZdY7MIyoD9rqARg==}
     dependencies:
       source-map: 0.6.1
-    dev: true
-
-  /@types/webxr@0.5.10:
-    resolution: {integrity: sha512-n3u5sqXQJhf1CS68mw3Wf16FQ4cRPNBBwdYLFzq3UddiADOim1Pn3Y6PBdDilz1vOJF3ybLxJ8ZEDlLIzrOQZg==}
     dev: true
 
   /@typescript-eslint/eslint-plugin@6.12.0(@typescript-eslint/parser@6.12.0)(eslint@8.54.0)(typescript@5.3.2):
@@ -1885,10 +1875,6 @@ packages:
       reusify: 1.0.4
     dev: true
 
-  /fflate@0.6.10:
-    resolution: {integrity: sha512-IQrh3lEPM93wVCEczc9SaAOvkmcoQn/G8Bo1e8ZPlY3X3bnAxWaBdvTdvM1hP62iZp0BXWDy4vTAy4fF0+Dlpg==}
-    dev: true
-
   /file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -2674,10 +2660,6 @@ packages:
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
-    dev: true
-
-  /meshoptimizer@0.18.1:
-    resolution: {integrity: sha512-ZhoIoL7TNV4s5B6+rx5mC//fw8/POGyNxS/DZyCJeiZ12ScLfVwRE/GfsxwiTkMYYD5DmK2/JXnEVXqL4rF+Sw==}
     dev: true
 
   /micromatch@4.0.5:
@@ -3544,10 +3526,6 @@ packages:
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
-
-  /three@0.158.0:
-    resolution: {integrity: sha512-TALj4EOpdDPF1henk2Q+s17K61uEAAWQ7TJB68nr7FKxqwyDr3msOt5IWdbGm4TaWKjrtWS8DJJWe9JnvsWOhQ==}
-    dev: false
 
   /through2@0.6.5:
     resolution: {integrity: sha512-RkK/CCESdTKQZHdmKICijdKKsCRVHs5KsLZ6pACAmF/1GPUQhonHSXWNERctxEp7RmvjdNbZTL5z9V7nSCXKcg==}
